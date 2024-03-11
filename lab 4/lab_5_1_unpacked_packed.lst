@@ -1,0 +1,123 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             RESET,DATA,READONLY
+    2 00000000                 EXPORT           __Vectors
+    3 00000000         __Vectors
+    4 00000000 40001000        DCD              0x40001000
+    5 00000004 00000000        DCD              Reset_Handler
+    6 00000008                 ALIGN
+    7 00000008                 AREA             mycode,CODE,READONLY
+    8 00000000                 ENTRY
+    9 00000000                 EXPORT           Reset_Handler
+   10 00000000         Reset_Handler
+   11 00000000 4906            LDR              R1,=RESULT1
+   12 00000002 4F07            LDR              R7,=OUTPUT
+   13 00000004 680A            LDR              R2,[R1]
+   14 00000006 F002 03FF       AND              R3,R2,#0X00FF
+   15 0000000A F402 447F       AND              R4,R2,#0XFF00
+   16 0000000E EA4F 2414       LSR              R4,R4,#8
+   17 00000012 EB04 0703       ADD              R7,R4,R3
+   18 00000016         STOP
+   19 00000016 E7FE            B                STOP
+   20 00000018 00000908 
+                       RESULT1 DCD              0X0908
+   21 0000001C 00000000 
+              00000000         AREA             MYDATA,DATA,READWRITE
+   22 00000000 00000000 
+                       OUTPUT  DCD              0
+   23 00000004                 END
+Command Line: --debug --xref --cpu=Cortex-M3 --apcs=interwork --depend=.\lab_5_
+1_unpacked_packed.d -o.\lab_5_1_unpacked_packed.o -IC:\Keil\ARM\RV31\INC -IC:\K
+eil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\NXP\LPC17xx --predefine="__EVAL SETA 1"
+ --list=.\lab_5_1_unpacked_packed.lst LAB_5_1_UNPACKED_PACKED.S
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+RESET 00000000
+
+Symbol: RESET
+   Definitions
+      At line 1 in file LAB_5_1_UNPACKED_PACKED.S
+   Uses
+      None
+Comment: RESET unused
+__Vectors 00000000
+
+Symbol: __Vectors
+   Definitions
+      At line 3 in file LAB_5_1_UNPACKED_PACKED.S
+   Uses
+      At line 2 in file LAB_5_1_UNPACKED_PACKED.S
+Comment: __Vectors used once
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+RESULT1 00000018
+
+Symbol: RESULT1
+   Definitions
+      At line 20 in file LAB_5_1_UNPACKED_PACKED.S
+   Uses
+      At line 11 in file LAB_5_1_UNPACKED_PACKED.S
+Comment: RESULT1 used once
+Reset_Handler 00000000
+
+Symbol: Reset_Handler
+   Definitions
+      At line 10 in file LAB_5_1_UNPACKED_PACKED.S
+   Uses
+      At line 5 in file LAB_5_1_UNPACKED_PACKED.S
+      At line 9 in file LAB_5_1_UNPACKED_PACKED.S
+
+STOP 00000016
+
+Symbol: STOP
+   Definitions
+      At line 18 in file LAB_5_1_UNPACKED_PACKED.S
+   Uses
+      At line 19 in file LAB_5_1_UNPACKED_PACKED.S
+Comment: STOP used once
+mycode 00000000
+
+Symbol: mycode
+   Definitions
+      At line 7 in file LAB_5_1_UNPACKED_PACKED.S
+   Uses
+      None
+Comment: mycode unused
+4 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+MYDATA 00000000
+
+Symbol: MYDATA
+   Definitions
+      At line 21 in file LAB_5_1_UNPACKED_PACKED.S
+   Uses
+      None
+Comment: MYDATA unused
+OUTPUT 00000000
+
+Symbol: OUTPUT
+   Definitions
+      At line 22 in file LAB_5_1_UNPACKED_PACKED.S
+   Uses
+      At line 12 in file LAB_5_1_UNPACKED_PACKED.S
+Comment: OUTPUT used once
+2 symbols
+341 symbols in table

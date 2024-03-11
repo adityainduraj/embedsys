@@ -1,0 +1,158 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             RESET,DATA,READONLY
+    2 00000000                 EXPORT           __Vectors
+    3 00000000         __Vectors
+    4 00000000 40001000        DCD              0x40001000
+    5 00000004 00000000        DCD              Reset_Handler
+    6 00000008                 ALIGN
+    7 00000008                 AREA             mycode,CODE,READONLY
+    8 00000000                 ENTRY
+    9 00000000                 EXPORT           Reset_Handler
+   10 00000000         Reset_Handler
+   11 00000000 480D            LDR              R0,=HEX
+   12 00000002 4D0E            LDR              R5,=ASCII   ;Address of answer
+   13 00000004 7801            LDRB             R1,[R0]     ;Place Hex byte int
+                                                            o R1
+   14 00000006 F001 02F0       AND              R2,R1,#0xF0 ;Mask to obtain hig
+                                                            her order bits
+   15 0000000A EA4F 1222       ASR              R2,#4
+   16 0000000E 2A09            CMP              R2,#9
+   17 00000010 D901            BLS              DIGIT       ;For digit
+   18 00000012 F102 0207       ADD              R2,R2,#0x7  ;For letter
+   19 00000016         DIGIT
+   20 00000016 F102 0230       ADD              R2,R2,#0x30 ;Converted into ASC
+                                                            II value
+   21 0000001A F805 2B01       STRB             R2,[R5],#1  ;Store higher order
+                                                             byte into result a
+                                                            nd point to next by
+                                                            te
+   22 0000001E F001 020F       AND              R2,R1,#0x0F ;Mask to obtain low
+                                                            er order bits
+   23 00000022 2A09            CMP              R2,#9
+   24 00000024 D901            BLS              DIGIT2
+   25 00000026 F102 0207       ADD              R2,#0x7
+   26 0000002A         DIGIT2
+   27 0000002A F102 0230       ADD              R2,R2,#0x30
+   28 0000002E 702A            STRB             R2,[R5]     ;Store lower order 
+                                                            byte into result
+   29 00000030         STOP
+   30 00000030 E7FE            B                STOP
+   31 00000032 00 00 0000004C 
+                       HEX     DCD              0x4C
+   32 00000038 00000000 
+              00000000         AREA             mydata,DATA,READWRITE
+   33 00000000 00000000 
+                       ASCII   DCD              0
+   34 00000004                 END
+Command Line: --debug --xref --cpu=Cortex-M3 --apcs=interwork --depend=.\lab_5_
+hex_to_asci.d -o.\lab_5_hex_to_asci.o -IC:\Keil\ARM\RV31\INC -IC:\Keil\ARM\CMSI
+S\Include -IC:\Keil\ARM\Inc\NXP\LPC17xx --predefine="__EVAL SETA 1" --list=.\la
+b_5_hex_to_asci.lst lab_5_hex_to_asci.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+RESET 00000000
+
+Symbol: RESET
+   Definitions
+      At line 1 in file lab_5_hex_to_asci.s
+   Uses
+      None
+Comment: RESET unused
+__Vectors 00000000
+
+Symbol: __Vectors
+   Definitions
+      At line 3 in file lab_5_hex_to_asci.s
+   Uses
+      At line 2 in file lab_5_hex_to_asci.s
+Comment: __Vectors used once
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+DIGIT 00000016
+
+Symbol: DIGIT
+   Definitions
+      At line 19 in file lab_5_hex_to_asci.s
+   Uses
+      At line 17 in file lab_5_hex_to_asci.s
+Comment: DIGIT used once
+DIGIT2 0000002A
+
+Symbol: DIGIT2
+   Definitions
+      At line 26 in file lab_5_hex_to_asci.s
+   Uses
+      At line 24 in file lab_5_hex_to_asci.s
+Comment: DIGIT2 used once
+HEX 00000034
+
+Symbol: HEX
+   Definitions
+      At line 31 in file lab_5_hex_to_asci.s
+   Uses
+      At line 11 in file lab_5_hex_to_asci.s
+Comment: HEX used once
+Reset_Handler 00000000
+
+Symbol: Reset_Handler
+   Definitions
+      At line 10 in file lab_5_hex_to_asci.s
+   Uses
+      At line 5 in file lab_5_hex_to_asci.s
+      At line 9 in file lab_5_hex_to_asci.s
+
+STOP 00000030
+
+Symbol: STOP
+   Definitions
+      At line 29 in file lab_5_hex_to_asci.s
+   Uses
+      At line 30 in file lab_5_hex_to_asci.s
+Comment: STOP used once
+mycode 00000000
+
+Symbol: mycode
+   Definitions
+      At line 7 in file lab_5_hex_to_asci.s
+   Uses
+      None
+Comment: mycode unused
+6 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+ASCII 00000000
+
+Symbol: ASCII
+   Definitions
+      At line 33 in file lab_5_hex_to_asci.s
+   Uses
+      At line 12 in file lab_5_hex_to_asci.s
+Comment: ASCII used once
+mydata 00000000
+
+Symbol: mydata
+   Definitions
+      At line 32 in file lab_5_hex_to_asci.s
+   Uses
+      None
+Comment: mydata unused
+2 symbols
+343 symbols in table
